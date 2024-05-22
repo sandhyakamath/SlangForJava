@@ -9,13 +9,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class Program {
-    static void TestFileScript() throws Exception {
+    static void InterpretScript(String fileName) throws Exception {
 
         // -------------- Read the contents from the file
-        String currentDirectory = System.getProperty("user.dir");
-        String file = currentDirectory+"/Data/STEP5/Bool.sl";
         StringBuilder content = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
 
         while ((line = reader.readLine()) != null) {
@@ -50,8 +48,14 @@ public class Program {
     /// </summary>
     /// <param name="args"></param>
     public static void main(String args[]) throws Exception {
+        final String fileName = System.getenv("fileName");
+        System.out.println(fileName);
+        if (fileName == null) {
+            System.out.println("Enter the file name");
+            return;
+        }
 
-        TestFileScript();
+        InterpretScript(fileName);
         //------------- Wait for the Key Press
 
     }
